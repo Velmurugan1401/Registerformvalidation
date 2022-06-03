@@ -25,7 +25,7 @@ export default function App() {
         if (!name) {
             seterrorn("errors")
             setnameerror("Name is required!")
-        } else if (!email || !(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email))) {
+        } else if (!email || !(/^[a-z-0-9]+@[a-z-0-9]+\.[a-z]+$/.test(email))) {
             seterrore("errors")
             setemailerr("Please enter valid email id!")
         }else if(!mobile || mobile.length==10){
