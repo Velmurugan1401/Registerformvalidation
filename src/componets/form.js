@@ -27,7 +27,7 @@ export default function App() {
             setnameerror("Name is required!")
         } else if (!email || !(/^[a-z-0-9-.]+@[a-z-0-9]+\.[a-z]+$/.test(email))) {
             seterrore("errors")
-            setemailerr("Sorry, only letters (a-z),numbers (0-9),and periods (.) are allowed")
+            setemailerr("Please enter valid email id!")
         }else if(!mobile || mobile.length==10){
             setmerr("errors")
             setmerrtxt("Mobile number must be 10 digit!")
