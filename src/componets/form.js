@@ -7,6 +7,8 @@ export default function App() {
 
     const [errmsgn, seterrorn] = useState("")
     const [emilerror, setemailerr] = useState("")
+    const [merror, setmerr] = useState("")
+    const [merrortext, setmerrtxt] = useState("")
     const [namerror, setnameerror] = useState("")
     const [errmsge, seterrore] = useState("")
     const [name, setname] = useState("")
@@ -22,10 +24,13 @@ export default function App() {
     const validate = () => {
         if (!name) {
             seterrorn("errors")
-            setnameerror("Name is required")
+            setnameerror("Name is required!")
         } else if (!email || !(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email))) {
             seterrore("errors")
-            setemailerr("Please enter valid email id !")
+            setemailerr("Please enter valid email id!")
+        }else if(!mobile || mobile.length==10){
+            setmerr("errors")
+            setmerrtxt("Mobile number must be 10 digit!")
         } else {
             setfoms("d-none")
             setsuccess("")
@@ -53,7 +58,7 @@ export default function App() {
                 <form className={"login-form " + forms}>
                     <div className="row">
                         <div className="col">
-                            <input type="text" value={name} name="Name" maxLength="30" className={"form-control mb-0" + errmsgn} onChange={(e) => {
+                            <input type="text" value={name} name="Name" maxLength="30" className={"form-control mb-0 " + errmsgn} onChange={(e) => {
                                 seterrorn("")
                                 setnameerror(" ")
                                 setname(e.target.value)
@@ -71,11 +76,15 @@ export default function App() {
                     </div>
                     <div className="row">
                         <div className="col">
-                            <input type="text" value={mobile} className="form-control" maxLength="20" pattern="[0-9]*" onKeyPress={(event) => {
+                            <input type="text" value={mobile} className={"form-control mb-0 "+ merror} maxLength="20" pattern="[0-9]*" onKeyPress={(event) => {
                                 if (!/[0-9+]/.test(event.key)) {
                                     event.preventDefault();
                                 }
-                            }} onChange={(e) => { setmobile(e.target.value) }} placeholder="Mobile" />
+                            }} onChange={(e) => {
+                                setmerr("") 
+                                setmerrtxt("")
+                                setmobile(e.target.value) }} placeholder="Mobile" />
+                                 <p className={"errmsgs text-left mt-0 mb-2 text-danger pl-2 text-small "}>{merrortext}</p>
                         </div>
                         <div className="col ">
                             <input type="text" value={country} className="form-control" maxLength="15" onChange={(e) => { setcountry(e.target.value) }} placeholder="Country" />
