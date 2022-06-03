@@ -7,6 +7,7 @@ export default function App() {
 
     const [errmsgn, seterrorn] = useState("")
     const [emilerror, setemailerr] = useState("")
+    const [namerror, setnameerror] = useState("")
     const [errmsge, seterrore] = useState("")
     const [name, setname] = useState("")
     const [email, setemail] = useState("")
@@ -21,6 +22,7 @@ export default function App() {
     const validate = () => {
         if (!name) {
             seterrorn("errors")
+            setnameerror("Name is required")
         } else if (!email || !(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(email))) {
             seterrore("errors")
             setemailerr("Please enter valid email id !")
@@ -51,10 +53,12 @@ export default function App() {
                 <form className={"login-form " + forms}>
                     <div className="row">
                         <div className="col">
-                            <input type="text" value={name} name="Name" maxLength="30" className={"form-control " + errmsgn} onChange={(e) => {
+                            <input type="text" value={name} name="Name" maxLength="30" className={"form-control mb-0" + errmsgn} onChange={(e) => {
                                 seterrorn("")
+                                setnameerror(" ")
                                 setname(e.target.value)
                             }} placeholder="Name*" />
+                             <p className={"errmsgs text-left mt-0 mb-2 text-danger pl-2 text-small "}>{namerror}</p>
                         </div>
                         <div className="col">
                             <input type="text" value={email} name="Email" maxLength="50" className={"form-control mb-0 " + errmsge} onChange={(e) => {
